@@ -121,20 +121,22 @@ def run_reader_prog():
                 im = Image.open(filename)
                 
                 #cropping side for PN
-                im_detect_PN = im.crop((1100,390,1260,440))
+                #redacted by company
+                im_detect_PN = im.crop((top,left,bottom,right))
 
                 #cropping top for RCV#
-                im_detect_RCV = im.crop((640,180,800,240))
+                #redacted by company
+                im_detect_Num = im.crop((top,left,bottom,right))
                 
                     
                 # Recognize the text as string in image using pytesserct  
                 PN_im_to_text = str(((pytesseract.image_to_string(im_detect_PN))))
 
-                RCV_im_to_text = str(((pytesseract.image_to_string(im_detect_RCV)))) 
+                Num_im_to_text = str(((pytesseract.image_to_string(im_detect_Num)))) 
 
-                if PN_im_to_text != "" and RCV_im_to_text[0:3] == "RCV":
+                if PN_im_to_text != "" and Num_im_to_text[0:3] == "RCV":
 
-                    file_name = PN_im_to_text + ', ' + RCV_im_to_text +'.pdf'
+                    file_name = PN_im_to_text + ', ' + Num_im_to_text +'.pdf'
 
                     path_to_save = output_loc +'/'+ file_name
 
@@ -170,9 +172,9 @@ root = tk.Tk()
 #set window geometry
 root.geometry("600x200")
 
-img = Image.open(r'C:\Users\Michael\Desktop\Elbit files\Receipt Reader\Elbit_Logo.png')
-img = img.resize((192,66), Image.ANTIALIAS)
-photoImg = itk.PhotoImage(img)
+#img = Image.open(r'Redacted/path/to/img')
+#img = img.resize((192,66), Image.ANTIALIAS)
+#photoImg = itk.PhotoImage(img)
 
 background_label = tk.Label(root, image=photoImg)
 background_label.place(relx = 1, rely = 1, anchor = 'se')
